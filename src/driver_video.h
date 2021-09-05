@@ -7,7 +7,7 @@
 /* Functions for video */
 
 /* Hardware text mode color constants. */
-enum vga_color {
+enum vga_color{
 	VGA_COLOR_BLACK = 0,
 	VGA_COLOR_BLUE = 1,
 	VGA_COLOR_GREEN = 2,
@@ -44,7 +44,7 @@ void terminal_setbgcolor(uint8_t color);
 
 void terminal_setfgcolor(uint8_t color);
 
-void terminal_setcolor(uint8_t colorfg, uint8_t colorbg);
+void terminal_setcolor();
 
 void terminal_putentryat(char c, uint8_t color, size_t x, size_t y);
 

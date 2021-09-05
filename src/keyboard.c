@@ -267,23 +267,21 @@ void terminal_readString(char *buffer){
             */
             c = translate(invalue);
             if(c != -1){
-                terminal_putchar(c);
                 if(c == '\b'){
                     if(i > 0)
                         i--;
                     else
                         continue;
                 }
-                else if(c != '\n'){
+                if(c != '\b')
                     buffer[i++] = c;
-                }
-                else{
+                terminal_putchar(c);
+                if(c == '\n'){
                     buffer[i] ^= buffer[i];
-                    i++;
                     break;
                 }
             }
-            if(i == 80*25){
+            if(i == 50){
                 buffer[i] ^= buffer[i];
                 break;
             }

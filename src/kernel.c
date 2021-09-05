@@ -28,7 +28,7 @@ i686-linux-gnu-gcc-10 -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wal
 */
 
 void kernel_main(void){
-	char buffer[80*25];
+	char buffer[50];
 	/* Initialize terminal interface */
 	terminal_initialize();
 
@@ -38,7 +38,7 @@ void kernel_main(void){
 	while(true){
 		//terminal_putchar(translate(inb(0x60)));
 
-		terminal_readString(buffer);
+		terminal_readString(buffer);//terminal_readString(buffer);
 		//terminal_writestring(buffer);
 		command(buffer);
 	}
