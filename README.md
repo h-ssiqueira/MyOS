@@ -14,6 +14,7 @@ Command | Description
 `bgcolor -hexcolor`| Changes the background color of screen. Only one hexadecimal character is accepted to change the color. Default: Black.
 `clear`| Clears the screen.
 `info`| Shows the information about the developer and the version of OS.
+`reboot`| Restart the OS.
 
 Avaliable colors to change the foreground and background:
 

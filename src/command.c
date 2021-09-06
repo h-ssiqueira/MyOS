@@ -160,12 +160,9 @@ void command(char *cmd){
         terminal_writestring("Developed by Henrique Sartori Siqueira V1.0.\n\0");
     else if(scmp(inst,"clear"))
         clear();
-    /*else if(scmp(inst,"reboot"))
-        outb(0xFE,0x64);
-
-        outb(0x64, 0xFE)
-        porta 0x64 para reset (0xFE)
-    */
+    else if(scmp(inst,"reboot"))
+        //outb(0xFE,0x64); // Port 0x64 to reset (0xFE)
+        asm volatile("JMP 0xFFFF");
     else
         terminal_writestring("Command not found.\n\0");
 }
