@@ -281,7 +281,7 @@ void terminal_readString(char *buffer){
                     break;
                 }
             }
-            if(i == 50){
+            if(i == MAX){
                 buffer[i] ^= buffer[i];
                 break;
             }
