@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "driver_video.h"
+#include "driver_keyboard.h"
 
 bool scmp(char *str1, char *str2){
     uint8_t i;
@@ -10,10 +11,6 @@ bool scmp(char *str1, char *str2){
         return true;
     return false;
 }
-
-/*void outb(uint16_t value, uint16_t port){
-	asm volatile("outb %1, %0" : "=a"(port) : "Nd"(value));
-}*/
 
 void command(char *cmd){
     size_t i,j;
@@ -228,8 +225,8 @@ void command(char *cmd){
     else if(scmp(inst,"clear"))
         clear();
     else if(scmp(inst,"reboot"))
-        //outb(0xFE,0x64); // Port 0x64 to reset (0xFE)
-        asm volatile("JMP 0xFFFF");
+        outb(0x64,0xFE); // Port 0x64 to reset (0xFE)
+        //asm volatile("JMP 0xFFFF");
     else
         terminal_writestring("Command not found.\n\0");
 }
