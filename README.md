@@ -28,6 +28,10 @@ Command | Description
 `clear`| Clears the screen.
 `info`| Shows the information about the developer and the version of OS.
 `reboot`| Restart the OS.
+`binary -text`| Print the corresponding binary value of each character of the string.
+`octal -text`| Print the corresponding octal value of each character of the string.
+`decimal -text`| Print the corresponding decimal value of each character of the string.
+`hexa -text`| Print the corresponding hexadecimal value of each character of the string.
 
 ### Color table
 Avaliable colors to change the foreground and background:

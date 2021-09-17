@@ -36,8 +36,6 @@ static inline uint16_t vga_entry(unsigned char uc, uint8_t color){
 
 void clear();
 
-size_t strlen(const char* str);
-
 void terminal_initialize(void);
 
 void terminal_setbgcolor(uint8_t color);
@@ -49,6 +47,8 @@ void terminal_setcolor();
 void terminal_putentryat(char c, uint8_t color, size_t x, size_t y);
 
 void terminal_putchar(char c);
+
+void terminal_writenum(size_t n, uint8_t base);
 
 void terminal_write(const char* data, size_t size);
 

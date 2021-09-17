@@ -16,6 +16,9 @@ boot.o : src/boot.s
 commands : src/command.c
 	${CC} src/command.c -o bin/command.o ${CFLAGS}
 
+string : src/string.c
+	${CC} src/string.c -o bin/string.o ${CFLAGS}
+
 drivers : src/video.c src/keyboard.c
 	${CC} src/video.c -o bin/video.o ${CFLAGS}
 	${CC} src/keyboard.c -o bin/keyboard.o ${CFLAGS}
@@ -23,7 +26,7 @@ drivers : src/video.c src/keyboard.c
 kernel.o : src/kernel.c
 	${CC} src/kernel.c -o bin/kernel.o ${CFLAGS}
 
-myos.bin : src/linker.ld boot.o kernel.o drivers commands
+myos.bin : src/linker.ld boot.o kernel.o drivers commands string
 	${CC} -T src/linker.ld -o bin/myos.bin bin/*.o ${LDFLAGS}
 
 myos.iso : myos.bin

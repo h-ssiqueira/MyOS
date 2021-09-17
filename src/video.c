@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include "string.h"
 #include "driver_video.h"
 
 static const size_t VGA_WIDTH = 80;
@@ -10,14 +11,6 @@ size_t terminal_row;
 size_t terminal_column;
 uint8_t terminal_color, fgcolor = VGA_COLOR_LIGHT_GREY, bgcolor = VGA_COLOR_BLACK;
 uint16_t* terminal_buffer;
-
-size_t strlen(const char* str){
-	size_t len;
-	len ^= len;
-	while(str[len])
-		len++;
-	return len;
-}
 
 void clear(){
 	uint8_t i,j;
@@ -172,6 +165,9 @@ void terminal_putchar(char c){
 			terminal_row--;
 		}
 	}
+	else if(c == '\t'){
+		terminal_writestring("    \0");
+	}
 	else{
 		terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 		if(++terminal_column == VGA_WIDTH){
@@ -182,6 +178,18 @@ void terminal_putchar(char c){
 			}
 		}
 	}
+}
+
+void terminal_writenum(size_t n, uint8_t base){
+	int8_t i, inverted[64];
+	i ^= i;
+	while(n > 0){
+		inverted[i++] = n % base;
+		n /= base;
+	}
+	i--;
+	while(i >= 0)
+		inverted[i] < 10 ? terminal_putchar(48+inverted[i--]) : terminal_putchar(55+inverted[i--]);
 }
 
 void terminal_write(const char* data, size_t size){

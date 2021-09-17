@@ -228,27 +228,6 @@ char translate(uint8_t key){
     return -1;
 }
 
-// Function to print the digit of key in keyboard
-void printDigit(int N){
-    // To store the digit of the number N
-    int arr[MAX], i, j, r;
-    i ^= i;
-
-    // Till N becomes 0
-    while(N != 0){
-        // Extract the last digit of N
-        r = N % 10;
-        // Put the digit in arr[]
-        arr[i++] = r;
-        // Update N to N/10 to extract next last digit
-        N /= 10;
-    }
-
-    // Print the digit of N by traversing arr[] reverse
-    for(j = i - 1; j > -1; j--)
-        terminal_putchar('0'+arr[j]);
-}
-
 // Read and store input from keyboard in a buffer
 void terminal_readString(char *buffer){
     uint8_t status, invalue;
@@ -261,7 +240,7 @@ void terminal_readString(char *buffer){
             invalue = inb(0x60);
             /* Code to collect the code of pressed and released keys (P-R)*/
             /*
-            printDigit(invalue);
+            terminal_writenum(invalue,10);
             i++;
             i % 2 == 0 ? terminal_putchar(' ') : terminal_putchar('-');
             */
