@@ -1,31 +1,31 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "interrupts.h"
-
+/* PODE NÃO SER NECESSÁRIO */
 
 // Flat setup
 GDT[0] = {.base=0, .limit=0, .type=0};                     // Selector 0x00 cannot be used
 GDT[1] = {.base=0, .limit=0xffffffff, .type=0x9A};         // Selector 0x08 will be our code
 GDT[2] = {.base=0, .limit=0xffffffff, .type=0x92};         // Selector 0x10 will be our data
 GDT[3] = {.base=&myTss, .limit=sizeof(myTss), .type=0x89}; // You can use LTR(0x18) (Load Task Register)
-
+// Assembly?
 
 // Filling the table  #the GDT [] ins not complete, we need to set up  the flags properly to make this works#
 /**
  * \param target A pointer to the 8-byte GDT entry
  * \param source An arbitrary structure describing the GDT entry
  */
-void encodeGdtEntry(uint8_t *target, struct GDT source)
-{
+void encodeGdtEntry(uint8_t *target, struct GDT source){
     // Check the limit to make sure that it can be encoded
-    if ((source.limit > 65536) && ((source.limit & 0xFFF) != 0xFFF)) {
+    if((source.limit > 65536) && ((source.limit & 0xFFF) != 0xFFF)){
         kerror("You can't do that!");
     }
-    if (source.limit > 65536) {
+    if(source.limit > 65536){
         // Adjust granularity if required
         source.limit = source.limit >> 12;
         target[6] = 0xC0;
-    } else {
+    }
+    else{
         target[6] = 0x40;
     }
  
