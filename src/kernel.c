@@ -18,6 +18,7 @@ void kernel_main(void){
 	char buffer[50];
 	/* Initialize terminal interface */
 	terminal_initialize();
+	//idt_init();
 
 	//terminal_writestring("Hello, I'm a simple kernel!\n");
 	while(true){

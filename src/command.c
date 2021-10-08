@@ -227,7 +227,7 @@ void command(char *cmd){
         }
     }
     else if(scmp(inst,"info"))
-        terminal_writestring("Developed by Henrique Sartori Siqueira\nJemis Dievas Jose Manhica\nRafael Silva Barbon\nV1.0.\n\0");
+        terminal_writestring("Developed by:\n\tHenrique Sartori Siqueira\n\tJemis Dievas Jose Manhica\n\tRafael Silva Barbon\nV1.0.\n\0");
     else if(scmp(inst,"clear"))
         clear();
     else if(scmp(inst,"reboot"))

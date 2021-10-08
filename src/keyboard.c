@@ -260,8 +260,9 @@ void terminal_readString(char *buffer){
                     break;
                 }
             }
-            if(i == MAX){
-                buffer[i] ^= buffer[i];
+            if(i == MAX-1){
+                buffer[i] = '\n';
+                buffer[i+1] ^= buffer[i+1];
                 break;
             }
         }

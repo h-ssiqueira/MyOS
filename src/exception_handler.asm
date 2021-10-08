@@ -10,7 +10,7 @@ isr_stub_%+%1:
     iret
 %endmacro
 
-; Defining the 32 exception handlers (Assembly)
+; Defining the 32 exception handlers
 extern exception_handler
 isr_no_err_stub 0
 ;isr_stub_0:

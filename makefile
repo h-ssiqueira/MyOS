@@ -1,5 +1,7 @@
 CC = i686-linux-gnu-gcc-10
 CCa = i686-linux-gnu-as
+NASM = nasm
+NASMFLAGS = -f elf32
 CFLAGS = -c -ffreestanding -O2 -Wall -Wextra
 LDFLAGS = -ffreestanding -O2 -nostdlib -lgcc
 
@@ -25,9 +27,7 @@ kernel.o : src/kernel.c
 
 interrupts : src/IDT.c src/exception_handler.asm
 	${CC} src/IDT.c -o bin/IDT.o ${CFLAGS}
-	nasm -f elf32 -o bin/exception_handler.o src/exception_handler.asm
-
-
+	${NASM} -o bin/exception_handler.o src/exception_handler.asm ${NASMFLAGS}
 
 string : src/string.c
 	${CC} src/string.c -o bin/string.o ${CFLAGS}
@@ -45,9 +45,12 @@ myos.iso : myos.bin
 ################################################################
 install:
 	sudo apt-get install gcc-10-i686-linux-gnu
+	sudo apt install nasm
 	sudo apt install xorriso
 	sudo apt install qemu-system-x86
+
 clean:
 	rm -rf bin/*.o
+
 run:
 	qemu-system-x86_64 -boot d -cdrom myos.iso -m 32

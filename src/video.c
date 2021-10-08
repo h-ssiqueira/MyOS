@@ -165,9 +165,8 @@ void terminal_putchar(char c){
 			terminal_row--;
 		}
 	}
-	else if(c == '\t'){
+	else if(c == '\t')
 		terminal_writestring("    \0");
-	}
 	else{
 		terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 		if(++terminal_column == VGA_WIDTH){
