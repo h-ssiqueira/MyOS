@@ -25,9 +25,10 @@ drivers : src/video.c src/keyboard.c
 kernel.o : src/kernel.c
 	${CC} src/kernel.c -o bin/kernel.o ${CFLAGS}
 
-interrupts : src/IDT.c src/exception_handler.asm
-	${CC} src/IDT.c -o bin/IDT.o ${CFLAGS}
+interrupts :  src/exception_handler.asm 
 	${NASM} -o bin/exception_handler.o src/exception_handler.asm ${NASMFLAGS}
+
+
 
 string : src/string.c
 	${CC} src/string.c -o bin/string.o ${CFLAGS}
