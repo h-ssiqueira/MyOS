@@ -1,6 +1,5 @@
-
 global isr_config
-isr_config: 
+isr_config:
 ;Configurando IRQ 0...15 [Reprogramando o PIC 8259A]
     MOV AL,0x11
     OUT 0xA0,AL
@@ -31,7 +30,7 @@ isr_config:
     STI
     RET
 
-    GDT:
+GDT:
     NULL         EQU $ - GDT
         DW 0,0
         DB 0,0,0,0
@@ -58,7 +57,7 @@ PGDT    DW PGDT - GDT         ; GDT SIZE
 
 ; Macro to configure the kernel mode;
 global gdt_config
-gdt_config: 
+gdt_config:
     ; Load GDT
     LGDT [PGDT]
 
@@ -77,7 +76,7 @@ gdt_config:
 
     RET
 
-    ; ---------------------------------------------------------------------------*
+; ---------------------------------------------------------------------------*
 ;  Copyright (C) 2015 Alisson Linhares de Carvalho.                          *
 ;  All rights reserved.                                                      *
 ;                                                                            *

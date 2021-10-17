@@ -32,6 +32,7 @@ Command | Description
 `octal -text`| Print the corresponding octal value of each character of the string.
 `decimal -text`| Print the corresponding decimal value of each character of the string.
 `hexa -text`| Print the corresponding hexadecimal value of each character of the string.
+`div0`| Test a 1/0 division.
 
 ### Color table
 Avaliable colors to change the foreground and background:
@@ -57,3 +58,4 @@ White | F <br> f <br> white
 
 ## References
 * [OsDev](https://wiki.osdev.org/)
+* [NativeKit](https://github.com/lmcad-unicamp/NativeKit)

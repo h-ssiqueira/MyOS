@@ -3,6 +3,7 @@
 #include "driver_video.h"
 #include "driver_keyboard.h"
 #include "string.h"
+#include "math.h"
 
 void bgcolor_num(char n){
     switch(n){
@@ -256,6 +257,10 @@ void command(char *cmd){
             inst[j] = cmd[i];
         inst[j] ^= inst[j];
         printAton(inst,16);
+    }
+    else if(scmp(inst,"div0")){
+        i ^= i;
+        j = div(1,i);
     }
     else
         terminal_writestring("Command not found.\n\0");

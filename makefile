@@ -25,15 +25,16 @@ drivers : src/video.c src/keyboard.c
 kernel.o : src/kernel.c
 	${CC} src/kernel.c -o bin/kernel.o ${CFLAGS}
 
-interrupts :  src/exception_handler.asm 
+interrupts :  src/exception_handler.asm
 	${NASM} -o bin/exception_handler.o src/exception_handler.asm ${NASMFLAGS}
 
-
+math : src/math.c
+	${CC} src/math.c -o bin/math.o ${CFLAGS}
 
 string : src/string.c
 	${CC} src/string.c -o bin/string.o ${CFLAGS}
 
-myos.bin : src/linker.ld boot.o kernel.o drivers commands string interrupts
+myos.bin : src/linker.ld boot.o kernel.o drivers commands string interrupts math
 	${CC} -T src/linker.ld -o bin/myos.bin bin/*.o ${LDFLAGS}
 
 myos.iso : myos.bin
