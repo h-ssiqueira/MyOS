@@ -229,42 +229,18 @@ char translate(uint8_t key){
 }
 
 // Read and store input from keyboard in a buffer
-void terminal_readString(char *buffer){
+char terminal_readString(){
     uint8_t status, invalue;
-    uint16_t i;
-    char c;
-    i ^= i;
-    while(true){
-        status = inb(0x64);
-        if(status & 1){
-            invalue = inb(0x60);
-            /* Code to collect the code of pressed and released keys (P-R)*/
-            /*
-            terminal_writenum(invalue,10);
-            i++;
-            i % 2 == 0 ? terminal_putchar(' ') : terminal_putchar('-');
-            */
-            c = translate(invalue);
-            if(c != -1){
-                if(c == '\b'){
-                    if(i > 0)
-                        i--;
-                    else
-                        continue;
-                }
-                if(c != '\b')
-                    buffer[i++] = c;
-                terminal_putchar(c);
-                if(c == '\n'){
-                    buffer[i] ^= buffer[i];
-                    break;
-                }
-            }
-            if(i == MAX-1){
-                buffer[i] = '\n';
-                buffer[i+1] ^= buffer[i+1];
-                break;
-            }
-        }
+    status = inb(0x64);
+    if(status & 1){
+        invalue = inb(0x60);
+        /* Code to collect the code of pressed and released keys (P-R)*/
+        /*
+        terminal_writenum(invalue,10);
+        i++;
+        i % 2 == 0 ? terminal_putchar(' ') : terminal_putchar('-');
+        */
+        return translate(invalue);            
     }
+    return -1;
 }

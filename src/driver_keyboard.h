@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#define MAX 100 // Limit of keyboard buffer
+#define MAX 101 // Limit of keyboard buffer
 
 // Get input from keyboard
 uint8_t inb(uint16_t port);
@@ -22,6 +22,6 @@ static inline void outb(uint16_t port, uint8_t val){
 char translate(uint8_t key);
 
 // Read and store input from keyboard in a buffer
-void terminal_readString(char *buffer);
+char terminal_readString();
 
 #endif

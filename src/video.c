@@ -181,14 +181,19 @@ void terminal_putchar(char c){
 
 void terminal_writenum(size_t n, uint8_t base){
 	int8_t i, inverted[64];
-	i ^= i;
-	while(n > 0){
-		inverted[i++] = n % base;
-		n /= base;
+	if(n==0){
+		terminal_putchar(48);
 	}
-	i--;
-	while(i >= 0)
-		inverted[i] < 10 ? terminal_putchar(48+inverted[i--]) : terminal_putchar(55+inverted[i--]);
+	else{
+		i ^= i;
+		while(n > 0){
+			inverted[i++] = n % base;
+			n /= base;
+		}
+		i--;
+		while(i >= 0)
+			inverted[i] < 10 ? terminal_putchar(48+inverted[i--]) : terminal_putchar(55+inverted[i--]);
+	}
 }
 
 void terminal_write(const char *data, size_t size){
