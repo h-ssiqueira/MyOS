@@ -12,66 +12,23 @@
 
 /*
 To compile:
-* Comment the pre processor directives and run the command below:
+* Comment the pre processor directives and run the commaned below:
 i686-linux-gnu-gcc-10 -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 */
-
-char buffer[MAX];
-uint16_t buffer_index = 0;
-
-extern void gdt_config();
-extern void idt_config();
-extern void isr_config();
-
-void handler(uint32_t id){
-	char c;
-	switch (id){ // clock interruptions
-		case 32:
-			return;
-			break;
-		case 33: // I/O interruption
-			c = terminal_readString();
-			if(c != -1){
-                if(c == '\b'){
-                    if(buffer_index > 0)
-                        buffer_index--;
-                }
-                if(c != '\b')
-                    buffer[buffer_index++] = c;
-                terminal_putchar(c);
-                if(c == '\n'){
-                    buffer[buffer_index] ^= buffer[buffer_index];
-					command(buffer);
-					buffer_index = 0;
-                    break;
-                }
-            }
-            if(buffer_index == MAX-2){
-                buffer[buffer_index] = '\n';
-                buffer[buffer_index+1] = 0;
-            }			
-			break;	
-		
-		default:
-			break;
-	}
-	//terminal_writenum(id,10);
-
-	//terminal_writestring("Hello, funfou!\n\0");
-	//while(true);
-}
 
 //static int x=0;
 void kernel_main(void){
 	gdt_config();
 	idt_config();
 	isr_config();
+	char arq[1700] = {"ELF                      l      4     (         Hello World!\n       óûL$ƒäðÿqüU‰åSèüÿÿÿÃ   Qƒìƒ    PèüÿÿÿƒÄeø1ÀY[]aüÃ‹$Ã GCC: (Ubuntu 10.3.0-1ubuntu1~20.04) 10.3.0          GNU   À             zR |ˆ  0          <    H Iu Au|LuxXÁ AÃAÅC   P                                          ñÿ                                                                                                 \n                                          	               	       <                 $              :               hello.c main __x86.get_pc_thunk.bx _GLOBAL_OFFSET_TABLE_ terminal_writestring          \n         	              H  O                                È  £                  \n"};
+	
 	
 	/* Initialize terminal interface */
 	terminal_initialize();
-	//idt_init();
+	
 
-	//terminal_writestring("Hello, I'm a simple kernel!\n\0");
+	/*//terminal_writestring("Hello, I'm a simple kernel!\n\0");
 
 	//int y=x/x;
 	//int j= div(1,x); // Infinite loop and doesn't print the exception code (for I/O and clock exceptions it works normally)
@@ -81,5 +38,5 @@ void kernel_main(void){
 		//terminal_writestring("Hello, I'm a simple kernel2!\n\0");
 		//terminal_writestring(buffer); // To check if the buffer gets the right input
 		//command(buffer);
-	}
+	}*/
 }

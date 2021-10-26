@@ -25,8 +25,9 @@ drivers : src/video.c src/keyboard.c
 kernel.o : src/kernel.c
 	${CC} src/kernel.c -o bin/kernel.o ${CFLAGS}
 
-interrupts :  src/exception_handler.asm
+interrupts :  src/exception_handler.asm src/interrupts.c
 	${NASM} -o bin/exception_handler.o src/exception_handler.asm ${NASMFLAGS}
+	${CC} src/interrupts.c -o bin/interrupts.o ${CFLAGS}
 
 math : src/math.c
 	${CC} src/math.c -o bin/math.o ${CFLAGS}
