@@ -19,4 +19,6 @@ bool scmp(char *str1, char *str2);
 
 void printAton(char *str, uint8_t base);
 
+bool find(char *str, char *string);
+
 #endif

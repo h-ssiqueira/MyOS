@@ -224,7 +224,7 @@ void command(char *cmd){
             for(j ^= j,i++; cmd[i] != '\n'; i++,j++)
                 inst[j] = cmd[i];
             inst[j] ^= inst[j];
-            bgcolor_txt(inst);
+            fgcolor_txt(inst);
         }
     }
     else if(scmp(inst,"info"))

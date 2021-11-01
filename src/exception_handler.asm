@@ -702,5 +702,5 @@ idt_config:
 	JB loop
 
 	LIDT [PIDT]
- RET
+RET
 

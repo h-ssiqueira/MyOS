@@ -240,7 +240,7 @@ char terminal_readString(){
         i++;
         i % 2 == 0 ? terminal_putchar(' ') : terminal_putchar('-');
         */
-        return translate(invalue);            
+        return translate(invalue);
     }
     return -1;
 }

@@ -30,3 +30,21 @@ void printAton(char *str, uint8_t base){
     }
     terminal_putchar('\n');
 }
+
+bool find(char *str, char *string){
+    char *len = strlen(str) - strlen(string) + str;
+    char lenstr = strlen(string),*size;
+    char *i,*j;
+    for(char *index = str; index < len; index++){
+        i = index;
+        size = lenstr + i;
+        j = string;
+        while(*i == *j && i < size){
+            i++;
+            j++;
+        }
+        if(i == size)
+            return true;
+    }
+    return false;
+}

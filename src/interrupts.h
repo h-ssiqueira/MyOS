@@ -5,6 +5,7 @@
 #include <stddef.h>
 
 void handler();
+void IOInt();
 
 extern void gdt_config();
 extern void idt_config();
