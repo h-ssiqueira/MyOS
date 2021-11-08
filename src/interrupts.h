@@ -3,8 +3,10 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include "register.h"
 
-void handler();
+void handler(uint32_t id, struct Registers *registers);
+
 void IOInt();
 
 extern void gdt_config();

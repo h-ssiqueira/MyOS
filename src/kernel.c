@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
+
 /* Created libraries */
 #include "driver_keyboard.h"
 #include "driver_video.h"
@@ -9,6 +10,7 @@
 #include "interrupts.h"
 #include "string.h"
 #include "math.h"
+#include "register.h"
 
 /*
 To compile:
@@ -21,8 +23,7 @@ void kernel_main(void){
 	gdt_config();
 	idt_config();
 	isr_config();
-	//char arq[1700] = {"ELF                      l      4     (         Hello World!\n       óûL$ƒäðÿqüU‰åSèüÿÿÿÃ   Qƒìƒ    PèüÿÿÿƒÄeø1ÀY[]aüÃ‹$Ã GCC: (Ubuntu 10.3.0-1ubuntu1~20.04) 10.3.0          GNU   À             zR |ˆ  0          <    H Iu Au|LuxXÁ AÃAÅC   P                                          ñÿ                                                                                                 \n                                          	               	       <                 $              :               hello.c main __x86.get_pc_thunk.bx _GLOBAL_OFFSET_TABLE_ terminal_writestring          \n         	              H  O                                È  £                  \n"};
-
+	
 
 	/* Initialize terminal interface */
 	terminal_initialize();

@@ -1,21 +1,19 @@
-; # apt install nasm
-; $ nasm -f elf32 hello.asm
-; $ ld -m elf_i386 -o hello hello.o
-; $ ./hello
-org 0h
-section .text 
+SECTION .DATA
+    hello:     db 'Hello world!',10
+    helloLen:  equ $-hello
+SECTION .TEXT
+    GLOBAL _start
+; Define variables in the data section
+
 _start:
-    mov edx,len                  ; arg3 da syscall write(), quantidade de bytes para imprimir (tamanho)
-    mov ecx,msg                  ; arg2, pointeiro para o endereço da string
-    mov ebx,1                    ; arg1, em qual file descriptor (fd) escrever. 1 é stdout
-    mov eax,4                    ; 4 é o código da syscall write()
-    int 0x80                     ; interrupção 0x80 do kernel (executa a syscall apontada em eax)
+    mov eax,4            ; 'write' system call = 4
+    mov ebx,1            ; file descriptor 1 = STDOUT
+    mov ecx,hello        ; string to write
+    mov edx,helloLen     ; length of string to write
+    int 80h              ; call the kernel
 
-    mov ebx,0                    ; arg1 da syscall exit(). 0 significa execução com sucesso
-    mov eax,1                    ; 1 é o código da syscall exit()
-    int 0x80                     ; executa a syscall apontada em eax, que vai sair do programa
+    ; Terminate program
+    mov eax,1            ; 'exit' system call
+    mov ebx,0            ; exit with error code 0
+    int 80h              ; call the kernel
 
-section .data
-msg: db "Mente Binária", 10      ; nossa string que será impressa, seguida de um \n
-len: equ $-msg                   ; "$" significa "aqui" -> posição atual menos posição do texto. len terá o tamanho da string.
- 

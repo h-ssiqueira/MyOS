@@ -3,6 +3,7 @@
 #include "driver_keyboard.h"
 #include "driver_video.h"
 #include "commands.h"
+#include "register.h"
 
 char buffer[MAX];
 uint16_t buffer_index = 0;
@@ -34,15 +35,15 @@ void IOInt(){
     }
 }
 
-void handler(uint32_t id){
-	switch (id){ // clock interruptions
-		case 32:
+void handler(uint32_t id, struct Registers *registers){
+	switch (id){ 
+		case 32: // clock interruptions
 			return;
 			break;
 		case 33: // I/O interruption
 			IOInt();
 			break;
-        case 0:
+        case 0: // Division by 0
             command("reboot");
 		default:
             break;
