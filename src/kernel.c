@@ -27,11 +27,13 @@ void kernel_main(void){
 
 	/* Initialize terminal interface */
 	terminal_initialize();
-
-
+	uint16_t prog[] = {0x6548,0x6c6c,0x206f,0x6f77,0x6c72,0x2164,0x000a,0x0000,0xb866,0x0004,0x0000,0xbb66,0x0001,0x0000,0xb966,0x0000,0x0000,0xba66,0x000d,0x0000,0x80cd,0xb866,0x0001,0x0000,0xbb66,0x0000,0x0000,0x80cd};
+	//*prog;jmp
+	
 	//terminal_writestring("Hello, I'm a simple kernel!\n\0");
 
 	while(true){
+
 		//terminal_putchar(translate(inb(0x60))); // For collect keyboard codes of each key pressed
 		//terminal_readString(buffer);
 		//terminal_writestring("Hello, I'm a simple kernel2!\n\0");
