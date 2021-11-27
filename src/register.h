@@ -15,7 +15,5 @@
         uintr_t r2; // ECX
         uintr_t r0; // EAX
         uintr_t pc; // EIP
-
-        
     }__attribute__((packed));
 #endif

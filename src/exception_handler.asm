@@ -1,3 +1,10 @@
+GLOBAL _run_app
+_run_app:
+    ; Pulando para o endereços 0x2000
+    MOV EAX, 0x2000
+	;MOV EAX, 0x10AFB8
+    JMP EAX
+
 global isr_config
 isr_config:
 ;Configurando IRQ 0...15 [Reprogramando o PIC 8259A]

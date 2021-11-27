@@ -12,6 +12,7 @@
 * [How to execute](#How-to-execute)
 * [Commands](#Commands)
     * [Color table](#Color-table)
+* [Interrupts](#Interrupts)
 * [References](#References)
 ## How to execute
 This OS need to be compiled in a Linux/Mac distribution. If you are on Windows just use the `myos.iso` file in a virtual machine.
@@ -23,8 +24,8 @@ Then compile the entire Operating System using `make`. After compiling, the OS w
 ## Commands
 Command | Description
 :---: | :---:
-`fgcolor -hexcolor`| Changes the foreground color of screen. Only one hexadecimal character is acceptec to change the color. Default: Light_Grey.
-`bgcolor -hexcolor`| Changes the background color of screen. Only one hexadecimal character is accepted to change the color. Default: Black.
+`fgcolor -hexcolor` <br> `fgcolor -text`| Changes the foreground color of screen. Only one hexadecimal character is acceptec to change the color or a text with the name of color (check [color table](#Color-table)). Default: Light_Grey.
+`bgcolor -hexcolor` <br> `bgcolor -text`| Changes the background color of screen. Only one hexadecimal character is accepted to change the color or a text with the name of color (check [color table](#Color-table)). Default: Black.
 `clear`| Clears the screen.
 `info`| Shows the information about the developer and the version of OS.
 `reboot`| Restart the OS.
@@ -55,6 +56,13 @@ Light Red | C <br> c <br> light red
 Light Magenta | D <br> d <br> light magenta
 Light Brown | E <br> e <br> light brown
 White | F <br> f <br> white
+
+## Interrupts
+Interrupt | Code | Handler
+:---: | :---: | :---:
+Division by 0 | 0 | Reboot
+Clock | 32 | Return
+I/O (keyboard) | 33 | Display key pressed in keyboard and stores the value in a buffer
 
 ## References
 * [OsDev](https://wiki.osdev.org/)
