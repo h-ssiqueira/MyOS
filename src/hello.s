@@ -1,6 +1,4 @@
-SECTION .DATA
-    hello:     db 'Hello world!',10
-    helloLen:  equ $-hello
+
 SECTION .TEXT
     GLOBAL _start
 ; Define variables in the data section
@@ -17,3 +15,6 @@ _start:
     mov ebx,0            ; exit with error code 0
     int 80h              ; call the kernel
 
+SECTION .DATA
+    hello:     db 'Hello world!',10
+    helloLen:  equ $-hello

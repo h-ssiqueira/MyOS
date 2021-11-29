@@ -55,14 +55,27 @@ void handler(uint32_t id, struct Registers *registers){
             terminal_writenum(registers->r2+0x2000,16);
             terminal_putchar('\n');*/
             //terminal_write((const char*)((registers->r2+(0x2000))), registers->r3);
-            if(registers->r0 == (uintr_t)0x2000 /*&& registers->r1 == (uintr_t)1*/){
+            //if(registers->r0 == (uintr_t)0x2000 /*&& registers->r1 == (uintr_t)1*/){
+                
+                terminal_writenum(registers->r0,16);
+                terminal_putchar('\n');
+                terminal_writenum(registers->r1,16);
+                terminal_putchar('\n');
                 terminal_writenum(registers->r2,16);
                 terminal_putchar('\n');
                 terminal_writenum(registers->r3,10);
                 terminal_putchar('\n');
+                terminal_writenum(registers->r4,16);
+                terminal_putchar('\n');
+                terminal_writenum(registers->r5,16);
+                terminal_putchar('\n');
+                terminal_writenum(registers->r6,16);
+                terminal_putchar('\n');
+                terminal_writenum(registers->pc,16);
+                terminal_putchar('\n');
                 terminal_writestring((const char*)registers->r2);
-                terminal_write((const char*)((registers->r2+(0x2000))), registers->r3);
-            }
+                terminal_write((const char*)((registers->r2)), registers->r3);
+            ///}
             if(registers->r0 == (uintr_t)0x10AFB8 /*&& registers->r1 == (uintr_t)1*/){
                 //registers->
                 //terminal_writestring("entrou2\n\0");
