@@ -56,7 +56,8 @@ void handler(uint32_t id, struct Registers *registers){
             terminal_putchar('\n');*/
             //terminal_write((const char*)((registers->r2+(0x2000))), registers->r3);
             //if(registers->r0 == (uintr_t)0x2000 /*&& registers->r1 == (uintr_t)1*/){
-                
+                registers->r1 -= 0x100000;
+                registers->r2 -= 0x100000;
                 terminal_writenum(registers->r0,16);
                 terminal_putchar('\n');
                 terminal_writenum(registers->r1,16);
@@ -73,8 +74,9 @@ void handler(uint32_t id, struct Registers *registers){
                 terminal_putchar('\n');
                 terminal_writenum(registers->pc,16);
                 terminal_putchar('\n');
-                terminal_writestring((const char*)registers->r2);
-                terminal_write((const char*)((registers->r2)), registers->r3);
+                //terminal_writestring((const char*)registers->r2);
+                //terminal_write((const char*)((registers->r2)), registers->r3);
+                terminal_write((const char*)(registers->r2+0x2000), registers->r3);
             ///}
             if(registers->r0 == (uintr_t)0x10AFB8 /*&& registers->r1 == (uintr_t)1*/){
                 //registers->

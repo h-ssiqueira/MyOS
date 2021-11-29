@@ -1,4 +1,4 @@
-
+org 0
 SECTION .TEXT
     GLOBAL _start
 ; Define variables in the data section
