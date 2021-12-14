@@ -5,6 +5,8 @@
 #include "string.h"
 #include "math.h"
 
+extern void _run_app();
+
 void bgcolor_num(char n){
     switch(n){
         case '0':
@@ -261,6 +263,9 @@ void command(char *cmd){
     else if(scmp(inst,"div0")){
         i ^= i;
         j = div(1,i);
+    }
+    else if(scmp(inst,"prog")){
+        _run_app();
     }
     else
         terminal_writestring("Command not found.\n\0");

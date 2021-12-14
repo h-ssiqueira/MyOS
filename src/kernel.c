@@ -18,8 +18,6 @@ To compile:
 i686-linux-gnu-gcc-10 -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 */
 
-extern void _run_app();
-
 void kernel_main(void){
 	gdt_config();
 	idt_config();
@@ -37,18 +35,12 @@ void kernel_main(void){
 0x6c72,0x2164,0x000a};
 
 	//terminal_writenum((size_t)&prog,16);
-	terminal_putchar('\n');
+	//terminal_putchar('\n');
 	uint16_t *c = (uint16_t *)0x2000;
 	//terminal_writenum(0x2000,10);
 	for(uint16_t i = 0; i < 27; i++){
 		c[i] = prog[i];
 	}
-
-
-	_run_app();
-
-
-
 
 	//terminal_writestring("Hello, I'm a simple kernel!\n\0");
 

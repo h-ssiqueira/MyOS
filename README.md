@@ -14,6 +14,7 @@
     * [Color table](#Color-table)
 * [Interrupts](#Interrupts)
 * [References](#References)
+* [Authors](#Authors)
 ## How to execute
 This OS need to be compiled in a Linux/Mac distribution. If you are on Windows just use the `myos.iso` file in a virtual machine.
 
@@ -34,6 +35,7 @@ Command | Description
 `decimal -text`| Print the corresponding decimal value of each character of the string.
 `hexa -text`| Print the corresponding hexadecimal value of each character of the string.
 `div0`| Test a 1/0 division.
+`prog`| Display the program loaded on memory ("Hello World!").
 
 ### Color table
 Avaliable colors to change the foreground and background:
@@ -63,7 +65,13 @@ Interrupt | Code | Handler
 Division by 0 | 0 | Reboot
 Clock | 32 | Return
 I/O (keyboard) | 33 | Display key pressed in keyboard and stores the value in a buffer
+INT | 128 | Kernel syscall interruption
 
 ## References
 * [OsDev](https://wiki.osdev.org/)
 * [NativeKit](https://github.com/lmcad-unicamp/NativeKit)
+
+## Authors
+- [Henrique Siqueira](https://github.com/h-ssiqueira)
+- [Jemis Dievas](https://github.com/jamesdievas)
+- [Rafael Barbon](https://github.com/RafaelBarbon)
